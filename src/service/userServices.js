@@ -1,5 +1,5 @@
 import apiClient from '../utils/api-client'
-import { jwtDecode } from 'jwt-decode'
+import jwtDecode from 'jwt-decode'
 
 export async function signup(user, profile) {
   const body = new FormData()

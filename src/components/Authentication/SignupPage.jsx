@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; // ✅ make sure to import
+import jwtDecode from "jwt-decode";
 
 import "./SignupPage.css";
 import profile from "../../assets/profile.png";
