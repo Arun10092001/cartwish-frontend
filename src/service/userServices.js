@@ -1,5 +1,6 @@
 import apiClient from '../utils/api-client'
 import jwtDecode from 'jwt-decode'
+import setAuthToken from '../utils/setAuthToken'
 
 export async function signup(user, profile) {
   const body = new FormData()
@@ -11,12 +12,14 @@ export async function signup(user, profile) {
 
   const { data } = await apiClient.post("/users/signup", body)
   localStorage.setItem("token", data.token)
+  setAuthToken(data.token)
   return data
 }
 
 export async function login(user) {
   const { data } = await apiClient.post("/users/login", user)
   localStorage.setItem("token", data.token)
+  setAuthToken(data.token)
   return data
 }
 

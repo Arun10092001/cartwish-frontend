@@ -11,18 +11,22 @@ import { addToCartApi, decreaseProductAPI, getCartAPI, increaseProductAPI, remov
 import 'react-toastify/dist/ReactToastify.css'
 import CartContext from "./context/CartContext";
 
-setAuthToken(getJwt());
-
 const App = () => {
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
+    // Set auth token in axios headers
+    const token = getJwt();
+    setAuthToken(token);
+
+    // Verify and set user
     const jwtUser = getUser();
     if (!jwtUser) return;
 
     if (Date.now() >= jwtUser.exp * 1000) {
       localStorage.removeItem("token");
+      setAuthToken(null);
       setUser(null);
     } else {
       setUser(jwtUser);
