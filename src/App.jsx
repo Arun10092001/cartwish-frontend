@@ -5,7 +5,7 @@ import UserContext from "./context/UserContext";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Routing from "./components/Routing/Routing";
-import { getJwt, getUser } from "./service/userservices";
+import { getJwt, getUser } from "./service/userServices.js";
 import setAuthToken from "./utils/setAuthToken";
 import { addToCartApi, decreaseProductAPI, getCartAPI, increaseProductAPI, removeFromCartAPI } from "./service/cartServices";
 import 'react-toastify/dist/ReactToastify.css'
