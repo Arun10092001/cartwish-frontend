@@ -8,11 +8,13 @@ import Table from "../Common/Table.jsx";
 import QuantityInput from "../SingleProduct/QuantityInput.jsx";
 import CartContext from "../../context/CartContext.js";
 import { checkoutAPI } from "../../service/orderServices.js";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const CartPage = () => {
   const [subTotal, setSubTotal] = useState(0);
   const user = useContext(UserContext);
+  const navigate = useNavigate();
   const { cart, removeFromCart, updateCart, setCart } = useContext(CartContext);
 
   useEffect(() => {
@@ -31,8 +33,13 @@ const CartPage = () => {
     checkoutAPI()
       .then(() => {
         toast.success("Order placed successfully");
+        navigate("/myorders");
       })
       .catch(() => {
+        console.error(
+          "checkout failed:",
+          err.response?.data || err.message || err,
+        );
         toast.error("Something went wrong!");
         setCart(oldCart);
         localStorage.setItem("cart", JSON.stringify(oldCart));
