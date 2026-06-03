@@ -2,7 +2,7 @@ import apiClient from "../utils/api-client";
 
 // Add product to cart
 export function addToCartApi(id, quantity ) {
-  return apiClient.post(`/cart/${id}`, { quantity });
+  return apiClient.post(`/cart/${id}`, { quantity: Number(quantity) });
 }
 export async function getCartAPI () {
        return await apiClient.get('/cart')
