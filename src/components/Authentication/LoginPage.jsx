@@ -5,11 +5,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import "./LoginPage.css";
-import { login } from "../../service/userservices";
+import { login } from "../../service/userServices";
 
 const schema = z.object({
   email: z.string().email({ message: "Please enter valid email address." }),
-  password: z.string().min(8, { message: "Password should be at least 8 characters." }),
+  password: z
+    .string()
+    .min(8, { message: "Password should be at least 8 characters." }),
 });
 
 const LoginPage = ({ setUser }) => {
@@ -42,14 +44,28 @@ const LoginPage = ({ setUser }) => {
         <div className="form_inputs">
           <div>
             <label htmlFor="email">Email</label>
-            <input id="email" type="email" className="form_text_input" {...register("email")} />
-            {errors.email && <em className="form_error">{errors.email.message}</em>}
+            <input
+              id="email"
+              type="email"
+              className="form_text_input"
+              {...register("email")}
+            />
+            {errors.email && (
+              <em className="form_error">{errors.email.message}</em>
+            )}
           </div>
 
           <div>
             <label htmlFor="password">Password</label>
-            <input id="password" type="password" className="form_text_input" {...register("password")} />
-            {errors.password && <em className="form_error">{errors.password.message}</em>}
+            <input
+              id="password"
+              type="password"
+              className="form_text_input"
+              {...register("password")}
+            />
+            {errors.password && (
+              <em className="form_error">{errors.password.message}</em>
+            )}
           </div>
 
           {formError && <em className="form_error">{formError}</em>}
